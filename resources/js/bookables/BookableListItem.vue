@@ -7,6 +7,19 @@
 
 <script>
 export default {
-    props: { itemTitle: String, itemContent: String, price: Number }
+    props: { itemTitle: String, itemContent: String, price: Number },
+    // beforeCreate() {
+    //     console.log("before create child");
+    // },
+    // created() {
+    //     console.log("created child");
+    // },
+    // beforeMount() {
+    //     console.log("before mount child");
+    // },
+    mounted() {
+        console.log(this.itemTitle);
+        // this.itemTitle = "Changed";
+    }
 };
 </script>
