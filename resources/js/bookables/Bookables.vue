@@ -1,15 +1,18 @@
 <template>
     <div>
-        <bookable-list-item
-            :item-title="bookable1.title"
-            :item-content="bookable1.content"
-            :price="1000"
-        ></bookable-list-item>
-        <bookable-list-item
-            :item-title="bookable2.title"
-            :item-content="bookable2.content"
-            :price="1500"
-        ></bookable-list-item>
+        Rows is {{ rows }}
+        <div v-if="loading">
+            Data is loading...
+        </div>
+        <div v-else>
+            <bookable-list-item
+                :item-title="bookable.title"
+                :item-content="bookable.content"
+                :price="1000"
+                v-for="(bookable, index) in bookables"
+                :key="index"
+            ></bookable-list-item>
+        </div>
     </div>
 </template>
 
@@ -22,39 +25,55 @@ export default {
     },
     data() {
         return {
-            bookable1: {
-                title: "Cheap Villa!",
-                content: "A very cheap villa"
-            },
-            bookable2: {
-                title: "Cheap Villa 2",
-                content: "A very cheap villa 2"
-            }
+            bookables: null,
+            loading: false,
+            columns: 3
         };
     },
-    // beforeCreate() {
-    //     console.log("before create");
-    // },
+
+    computed: {
+        rows() {
+            return this.bookables === null
+                ? 0
+                : Math.ceil(this.bookables.length / this.columns);
+        }
+    },
+
     created() {
-        console.log("created");
-        console.log(this.bookable1);
-        console.log(this.bookable2);
+        this.loading = true;
         setTimeout(() => {
-            this.bookable1.title = "Expensive Villa";
-            this.bookable2.title = "Very expensive Villa";
-        }, 5000);
+            this.bookables = [
+                {
+                    title: "Cheap Villa!",
+                    content: "A very cheap villa"
+                },
+                {
+                    title: "Cheap Villa 2",
+                    content: "A very cheap villa 2"
+                },
+                {
+                    title: "Cheap Villa 2",
+                    content: "A very cheap villa 2"
+                },
+                {
+                    title: "Cheap Villa 2",
+                    content: "A very cheap villa 2"
+                },
+                {
+                    title: "Cheap Villa 2",
+                    content: "A very cheap villa 2"
+                },
+                {
+                    title: "Cheap Villa 2",
+                    content: "A very cheap villa 2"
+                },
+                {
+                    title: "Cheap Villa 2",
+                    content: "A very cheap villa 2"
+                }
+            ];
+            this.loading = false;
+        }, 2000);
     }
-    // beforeMount() {
-    //     console.log("before mount");
-    // },
-    // mounted() {
-    //     console.log("mounted");
-    // },
-    // beforeDestroy() {
-    //     console.log("before destroy");
-    // },
-    // destroyed() {
-    //     console.log("destroyed");
-    // }
 };
 </script>
