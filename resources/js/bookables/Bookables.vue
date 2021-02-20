@@ -12,7 +12,7 @@
                 >
                     <bookable-list-item
                         :item-title="bookable.title"
-                        :item-content="bookable.content"
+                        :item-description="bookable.description"
                         :price="1000"
                     ></bookable-list-item>
                 </div>
@@ -63,39 +63,21 @@ export default {
 
     created() {
         this.loading = true;
-        setTimeout(() => {
-            this.bookables = [
-                {
-                    title: "Cheap Villa!",
-                    content: "A very cheap villa"
-                },
-                {
-                    title: "Cheap Villa 2",
-                    content: "A very cheap villa 2"
-                },
-                {
-                    title: "Cheap Villa 2",
-                    content: "A very cheap villa 2"
-                },
-                {
-                    title: "Cheap Villa 2",
-                    content: "A very cheap villa 2"
-                },
-                {
-                    title: "Cheap Villa 2",
-                    content: "A very cheap villa 2"
-                },
-                {
-                    title: "Cheap Villa 2",
-                    content: "A very cheap villa 2"
-                },
-                {
-                    title: "Cheap Villa 2",
-                    content: "A very cheap villa 2"
-                }
-            ];
+
+        // const p = new Promise((resolve, reject) => {
+        //     console.log(resolve);
+        //     console.log(reject);
+        //     setTimeout(() => reject("Hello"), 3000);
+        // })
+        //     .then(result => console.log(`Success ${result}`))
+        //     .catch(result => console.log(`Error ${result}`));
+
+        // console.log(p);
+
+        const request = axios.get("/api/bookables").then(response => {
+            this.bookables = response.data;
             this.loading = false;
-        }, 2000);
+        });
     }
 };
 </script>
