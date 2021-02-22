@@ -19,7 +19,11 @@
 </template>
 
 <script>
+import Availability from "./Availability";
 export default {
+    components: {
+        Availability
+    },
     data() {
         return {
             bookable: null,
