@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Bookable;
+use App\Http\Controllers\Api\BookableController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,10 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('bookables', function (Request $request) {
-    return Bookable::all();
-});
+// use this shortened routes for smaller app
+// Route::get('bookables', function (Request $request) {
+//     return Bookable::all();
+// });
 
-Route::get('bookables/{id}', function(Request $request, $id) {
-    return Bookable::findOrFail($id);
-});
+// Route::get('bookables/{id}', function(Request $request, $id) {
+//     return Bookable::findOrFail($id);
+// });
+
+Route::get('bookables', [BookableController::class,'index']);
+Route::get('bookables/{id}', [BookableController::class,'show']);
