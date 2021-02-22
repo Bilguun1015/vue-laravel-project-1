@@ -28,5 +28,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return Bookable::findOrFail($id);
 // });
 
-Route::get('bookables', [BookableController::class,'index']);
-Route::get('bookables/{id}', [BookableController::class,'show']);
+// Route::get('bookables', [BookableController::class,'index']);
+// Route::get('bookables/{id}', [BookableController::class,'show']);
+Route::apiResource('bookables', BookableController::class)->only(['index', 'show']);

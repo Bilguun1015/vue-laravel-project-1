@@ -1877,7 +1877,7 @@ __webpack_require__.r(__webpack_exports__);
 
     this.loading = true;
     axios.get("/api/bookables/".concat(this.$route.params.id)).then(function (response) {
-      _this.bookable = response.data;
+      _this.bookable = response.data.data;
       _this.loading = false;
     });
   }
@@ -1982,17 +1982,9 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.loading = true; // const p = new Promise((resolve, reject) => {
-    //     console.log(resolve);
-    //     console.log(reject);
-    //     setTimeout(() => reject("Hello"), 3000);
-    // })
-    //     .then(result => console.log(`Success ${result}`))
-    //     .catch(result => console.log(`Error ${result}`));
-    // console.log(p);
-
+    this.loading = true;
     var request = axios.get("/api/bookables").then(function (response) {
-      _this.bookables = response.data;
+      _this.bookables = response.data.data;
       _this.loading = false;
     });
   }
