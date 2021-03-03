@@ -12,6 +12,7 @@
                     name="from"
                     placeholder="Start date"
                     v-model="from"
+                    @keyup.enter="check"
                 />
             </div>
 
@@ -23,11 +24,14 @@
                     name="to"
                     placeholder="End date"
                     v-model="to"
+                    @keyup.enter="check"
                 />
             </div>
         </div>
-
-        <button class="btn btn-secondary btn-block">Check!</button>
+        <!-- v-on:click is same as @click -->
+        <button class="btn btn-secondary btn-block" @click="check">
+            Check!
+        </button>
     </div>
 </template>
 
@@ -38,6 +42,12 @@ export default {
             from: null,
             to: null
         };
+    },
+
+    methods: {
+        check() {
+            alert("hey");
+        }
     }
 };
 </script>
