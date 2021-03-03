@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bookable extends Model
 {
-    // use HasFactory;
+    use HasFactory;
 
-    public function bookable()
+    public function bookings()
     {
-        return $this->belongsTo(Bookable::class);
+        return $this->hasMany(Booking::class);
     }
 }

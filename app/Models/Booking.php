@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    // use HasFactory;
-
-    public function bookings()
+    use HasFactory;
+    protected $fillable = ['from', 'to'];
+    public function bookable()
     {
-        return $this->hasMany(Booking::class);
+        return $this->belongsTo(Bookable::class);
     }
 }
